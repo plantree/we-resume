@@ -1,0 +1,65 @@
+{
+  "name": "typescript-react-vite-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plantree/typescript-react-vite-template.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "author": "plantree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plantree/typescript-react-vite-template/issues"
+  },
+  "homepage": "https://github.com/plantree/typescript-react-vite-template#readme",
+  "description": "A Vite + React + TypeScript template",
+  "scripts": {
+    "dev": "vite --port 6543",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 6544",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "format": "prettier --write  './**/*.{js,jsx,ts,tsx,css,md,json}' && stylelint './**/*.{css,scss,less}' --fix",
+    "lint-staged": "lint-staged",
+    "prepare": "husky",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^10.0.1",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-istanbul": "^1.6.0",
+    "cypress": "^13.9.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "husky": "^9.0.11",
+    "jsdom": "^24.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.5.0",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  }
+}
