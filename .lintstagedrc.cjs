@@ -1,6 +1,6 @@
 module.exports = {
-    '*.{js,jsx,ts,tsx}': [
+    '*.{s,jsx,ts,tsx,json,css,scss,md}': [
         'eslint --report-unused-disable-directives --max-warnings 0',
-        'prettier --write'
+        'prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\ && stylelint './**/*.{css,scss,less}' --fix"'
     ]
 };
