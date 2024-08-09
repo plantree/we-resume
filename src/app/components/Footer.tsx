@@ -1,19 +1,21 @@
 'use client';
 
 export default function Footer() {
+  const current_year = new Date().getFullYear();
+
   return (
     <footer className="border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow">
-      <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2024-present{' '}
-          <a href="https://plantree.me/" className="hover:underline">
+      <div className="w-full mx-auto flex flex-col max-w-screen-xl p-4 md:flex-row md:items-center md:justify-between">
+        <span className="text-sm text-gray-500 text-center dark:text-gray-400">
+          © {current_year}{' '}
+          <a href="https://plantree.me/" target="_blank" className="hover:underline">
             Plantree
           </a>
           . All Rights Reserved.
         </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <ul className="flex flex-wrap space-x-2 md:space-x-4 justify-center items-center mt-3 md:mt-0 text-sm font-medium text-gray-500 dark:text-gray-400">
           <li>
-            <a href="/about" className="hover:underline me-4 md:me-6">
+            <a href="/about" className="hover:underline">
               关于
             </a>
           </li>
