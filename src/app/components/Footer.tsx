@@ -1,13 +1,13 @@
 'use client';
 
 export default function Footer() {
-  const current_year = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow">
       <div className="w-full mx-auto flex flex-col max-w-screen-xl p-4 md:flex-row md:items-center md:justify-between">
         <span className="text-sm text-gray-500 text-center dark:text-gray-400">
-          © {current_year}{' '}
+          © {currentYear}{' '}
           <a href="https://plantree.me/" target="_blank" className="hover:underline">
             Plantree
           </a>
