@@ -20,7 +20,10 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a href="/contact" className="hover:underline">
+            <a
+              href="mailto:eric.wangpy@outlook.com?subject=[Issue] 微简历"
+              className="hover:underline"
+            >
               联系
             </a>
           </li>

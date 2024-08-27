@@ -61,7 +61,7 @@ export default function Header() {
           </svg>
         </button>
         <div className={(mobileMenu ? '' : 'hidden') + ' w-full items-center md:flex md:w-auto'}>
-          <ul className="flex flex-col font-medium m-2 rounded-lg bg-gray-50 md:items-center md:flex-row md:m-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+          <ul className="flex flex-col font-medium m-2 rounded-lg bg-gray-50 md:items-center md:flex-row md:space-x-4 md:m-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
             <li>
               <a
                 href="/parser"
