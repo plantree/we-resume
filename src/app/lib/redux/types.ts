@@ -1,6 +1,6 @@
 export interface ResumeDate {
-  start: Date;
-  end: Date;
+  start: string;
+  end: string;
 }
 
 export interface ResumeProfile {
@@ -50,4 +50,9 @@ export interface Resume {
 // version control
 export interface ResumeMap {
   [key: string]: Resume;
+}
+
+export interface ResumeState {
+  resumes: ResumeMap;
+  currentResumeId: string;
 }

@@ -3,7 +3,7 @@ import type { RootState } from './store';
 /**
  * LocalStorage
  */
-const LOCAL_STORAG_KEY = 'we-resume';
+export const LOCAL_STORAG_KEY = 'we-resume';
 
 export const loadStateFromLocalStorage = (): RootState | undefined => {
   try {

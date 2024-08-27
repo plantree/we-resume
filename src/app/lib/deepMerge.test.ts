@@ -2,7 +2,7 @@ import { expect, test } from 'vitest';
 
 import { deepMerge } from './deepMerge';
 
-test('deepMerge1', () => {
+test('deepMerge', () => {
   const obj1 = {
     a: 1,
     b: {

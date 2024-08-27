@@ -9,7 +9,8 @@ import type {
   ResumeWork,
   ResumeSkill,
   ResumeProject,
-  ResumeDate
+  ResumeDate,
+  ResumeState
 } from './types';
 
 export const initialProfile: ResumeProfile = {
@@ -22,8 +23,8 @@ export const initialProfile: ResumeProfile = {
 };
 
 export const initialDate: ResumeDate = {
-  start: new Date(),
-  end: new Date()
+  start: new Date().toJSON(),
+  end: new Date().toJSON()
 };
 
 export const initialEducation: ResumeEducation = {
@@ -64,48 +65,50 @@ export const initialResumeMap: ResumeMap = {
   default: initialResume
 };
 
+export const initialResumeState: ResumeState = {
+  resumes: initialResumeMap,
+  // current version
+  currentResumeId: 'default'
+};
+
 export const resumeSlice = createSlice({
   name: 'resume',
-  initialState: {
-    // current version
-    currentKey: 'default',
-    resumeMap: initialResumeMap as ResumeMap
-  },
+  initialState: initialResumeState,
   reducers: {
     addResume(state, action: PayloadAction<string>) {
-      state.resumeMap[action.payload] = initialResume;
+      state.resumes[action.payload] = initialResume;
     },
     removeResume(state, action: PayloadAction<string>) {
-      delete state.resumeMap[action.payload];
+      delete state.resumes[action.payload];
     },
     selectResume(state, action: PayloadAction<string>) {
-      state.currentKey = action.payload;
+      state.currentResumeId = action.payload;
     },
     setResume(state, action: PayloadAction<Resume>) {
-      state.resumeMap[state.currentKey] = action.payload;
+      state.resumes[state.currentResumeId] = action.payload;
     },
     renameResume(state, action: PayloadAction<{ oldKey: string; newKey: string }>) {
       const { oldKey, newKey } = action.payload;
-      state.resumeMap[newKey] = state.resumeMap[oldKey];
-      delete state.resumeMap[oldKey];
-      if (state.currentKey === oldKey) {
-        state.currentKey = newKey;
+      state.resumes[newKey] = state.resumes[oldKey];
+      delete state.resumes[oldKey];
+      if (state.currentResumeId === oldKey) {
+        state.currentResumeId = newKey;
       }
     },
     updateProfile(state, action: PayloadAction<ResumeProfile>) {
-      state.resumeMap[state.currentKey].profile = action.payload;
+      state.resumes[state.currentResumeId].profile = action.payload;
     },
     updateEducation(state, action: PayloadAction<{ index: number; education: ResumeEducation }>) {
       const { index, education } = action.payload;
-      state.resumeMap[state.currentKey].educations[index] = education;
+      state.resumes[state.currentResumeId].educations[index] = education;
     },
     updateWork(state, action: PayloadAction<{ index: number; work: ResumeWork }>) {
       const { index, work } = action.payload;
-      state.resumeMap[state.currentKey].works[index] = work;
+      state.resumes[state.currentResumeId].works[index] = work;
     },
     updateSkill(state, action: PayloadAction<{ index: number; skill: ResumeSkill }>) {
       const { index, skill } = action.payload;
-      state.resumeMap[state.currentKey].skills[index] = skill;
+      state.resumes[state.currentResumeId].skills[index] = skill;
     }
   }
 });
@@ -122,14 +125,14 @@ export const {
   updateSkill
 } = resumeSlice.actions;
 
-export const selectCurrentKey = (state: RootState) => state.resume.currentKey;
+export const selectCurrentKey = (state: RootState) => state.resume.currentResumeId;
 export const selectProfile = (state: RootState) =>
-  state.resume.resumeMap[state.resume.currentKey].profile;
+  state.resume.resumes[state.resume.currentResumeId].profile;
 export const selectEducations = (state: RootState) =>
-  state.resume.resumeMap[state.resume.currentKey].educations;
+  state.resume.resumes[state.resume.currentResumeId].educations;
 export const selectWorks = (state: RootState) =>
-  state.resume.resumeMap[state.resume.currentKey].works;
+  state.resume.resumes[state.resume.currentResumeId].works;
 export const selectSkills = (state: RootState) =>
-  state.resume.resumeMap[state.resume.currentKey].skills;
+  state.resume.resumes[state.resume.currentResumeId].skills;
 
 export default resumeSlice.reducer;
