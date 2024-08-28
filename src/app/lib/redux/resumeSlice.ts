@@ -75,8 +75,13 @@ export const resumeSlice = createSlice({
   name: 'resume',
   initialState: initialResumeState,
   reducers: {
+    setResumeState(state, action: PayloadAction<ResumeState>) {
+      state.resumes = action.payload.resumes;
+      state.currentResumeId = action.payload.currentResumeId;
+    },
     addResume(state, action: PayloadAction<string>) {
       state.resumes[action.payload] = initialResume;
+      state.currentResumeId = action.payload;
     },
     removeResume(state, action: PayloadAction<string>) {
       delete state.resumes[action.payload];
@@ -114,6 +119,7 @@ export const resumeSlice = createSlice({
 });
 
 export const {
+  setResumeState,
   addResume,
   removeResume,
   selectResume,

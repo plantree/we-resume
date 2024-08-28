@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector, type TypedUseSelectorHook } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { store, type RootState, type AppDispatch } from './store';
 import { loadStateFromLocalStorage, saveStateToLocalStorage } from './storage';
-import { initialResume, setResume } from './resumeSlice';
+import { initialResumeState, setResumeState } from './resumeSlice';
 import { deepMerge } from '../deepMerge';
 
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();
 
 /**
  * Hook to save store to localStorage on change
@@ -29,10 +29,10 @@ export const useLoadInitialState = () => {
     const state = loadStateFromLocalStorage();
     if (state) {
       // Merge with initial state to avoid missing new fields.
-      const mergedResumeState = deepMerge(initialResume, state.resume);
-      dispatch(setResume(mergedResumeState));
+      const mergedResumeState = deepMerge(initialResumeState, state.resume);
+      dispatch(setResumeState(mergedResumeState));
     } else {
-      dispatch(setResume(initialResume));
+      dispatch(setResumeState(initialResumeState));
     }
   }, [dispatch]);
 };
