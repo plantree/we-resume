@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body>
         <Header />
-        <main className="min-h-screen w-full bg-gray-50 dark:bg-gray-700">{children}</main>
+        <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700">{children}</main>
         <Footer />
       </body>
     </html>

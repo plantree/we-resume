@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="sticky top-0 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
+    <nav className="sticky top-0 border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-3">
         <a href="/" className="flex items-center space-x-3">
           <Image

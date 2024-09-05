@@ -1,15 +1,22 @@
 'use client';
 
 import { Provider } from 'react-redux';
-import { store } from 'lib/redux/store';
+import { store } from '../lib/redux/store';
+import ResumeForm from '../components/ResumeForm';
+import ResumePreview from '../components/ResumePreview';
 
 import React from 'react';
 
 export default function Editor() {
   return (
     <Provider store={store}>
-      <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-50 dark:bg-gray-700">
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Editor</h1>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 p-4 border-2">
+          <ResumeForm />
+        </div>
+        <div className="md:w-1/2 p-4 border-2">
+          <ResumePreview />
+        </div>
       </div>
     </Provider>
   );
