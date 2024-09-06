@@ -2,8 +2,8 @@
 
 import { Provider } from 'react-redux';
 import { store } from '../lib/redux/store';
-import ResumeForm from '../components/ResumeForm';
-import ResumePreview from '../components/ResumePreview';
+import ResumeForm from '../components/resume-form';
+import ResumePreview from '../components/resume-preview';
 
 import React from 'react';
 

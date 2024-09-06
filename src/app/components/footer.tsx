@@ -1,31 +1,30 @@
 'use client';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 shadow">
-      <div className="w-full mx-auto flex flex-col max-w-screen-xl p-4 md:flex-row md:items-center md:justify-between">
+    <footer className="bg-white rounded-lg shadow dark:bg-gray-800 md:py-4">
+      <div className="container mx-auto p-4 flex flex-col gap-2 md:gap-0 md:flex-row md:items-center md:justify-between">
         <span className="text-sm text-gray-500 text-center dark:text-gray-400">
-          © {currentYear}{' '}
-          <a href="https://plantree.me/" target="_blank" className="hover:underline">
+          © 2024-{currentYear}{' '}
+          <a href="https://plantree.me/" className="hover:underline">
             Plantree
           </a>
           . All Rights Reserved.
         </span>
-        <ul className="flex flex-wrap space-x-2 md:space-x-4 justify-center items-center mt-3 md:mt-0 text-sm font-medium text-gray-500 dark:text-gray-400">
+        <ul className="mx-auto md:mx-0 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400">
           <li>
-            <a href="/about" className="hover:underline">
+            <Link href="/about" className="hover:underline me-4 md:me-6">
               关于
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:eric.wangpy@outlook.com?subject=[Issue] 微简历"
-              className="hover:underline"
-            >
+            </Link>
+            <Link href="/changelog" className="hover:underline me-4 md:me-6">
+              版本
+            </Link>
+            <Link href="/contact" className="hover:underline me-4 md:me-6">
               联系
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
