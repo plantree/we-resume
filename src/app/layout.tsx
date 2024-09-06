@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import ThemeProvider from './components/theme-provider';
+import Header from './components/header';
+import Footer from './components/footer';
 
 export const metadata: Metadata = {
   title: '微简历 | WeResume',
@@ -17,9 +18,16 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body>
-        <Header />
-        <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700">{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
