@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body>
+      <body className="relative">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -25,7 +25,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700">{children}</main>
+          <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700 pt-16 md:pt-0">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

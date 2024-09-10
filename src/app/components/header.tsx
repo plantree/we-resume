@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
@@ -9,11 +10,34 @@ import { Menu, X } from 'lucide-react';
 import githubIcon from './icons/github.svg';
 import favIcon from './icons/favicon.svg';
 
+function GithubIcon() {
+  return (
+    <Button variant="ghost" size="icon">
+      <Link href="https://github.com/plantree/we-resume" target="_blank">
+        <Image priority src={githubIcon} alt="Follow on GitHub" className="w-6 h-6" />
+      </Link>
+    </Button>
+  );
+}
+
+function GithubTooltip() {
+  return (
+    <TooltipProvider delayDuration={300}>
+      <Tooltip>
+        <TooltipTrigger>
+          <GithubIcon />
+        </TooltipTrigger>
+        <TooltipContent>关注 GitHub</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="rounded-lg shadow">
+    <header className="bg-white fixed w-full md:sticky md:top-0 shadow">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo or Brand */}
         <div className="text-xl font-bold flex gap-2">
@@ -45,11 +69,7 @@ export default function Header() {
         {/* Actions (for desktop) // TODO */}
         <div className="hidden md:flex space-x-4">
           {' '}
-          <Button variant="ghost" size="icon">
-            <Link href="https://github.com/plantree/we-resume" target="_blank">
-              <Image priority src={githubIcon} alt="Follow on GitHub" className="w-6 h-6" />
-            </Link>
-          </Button>
+          <GithubTooltip />
           {/* <ModeToggle />
           <Button variant="outline">登陆</Button>
           <Button variant="default">注册</Button> */}
@@ -70,11 +90,7 @@ export default function Header() {
 
           {/* Mobile Actions // TODO */}
           <div className="flex flex-col space-y-4 px-6 pb-4">
-            <Button variant="ghost" size="icon">
-              <Link href="https://github.com/plantree/we-resume" target="_blank">
-                <Image priority src={githubIcon} alt="Follow on GitHub" className="w-6 h-6" />
-              </Link>
-            </Button>
+            <GithubIcon />
             {/* <ModeToggle />
             <Button variant="outline">登陆</Button>
             <Button variant="default">注册</Button> */}
