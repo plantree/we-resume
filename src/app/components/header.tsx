@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
@@ -20,41 +19,18 @@ function GithubIcon() {
   );
 }
 
-function GithubTooltip() {
-  return (
-    <TooltipProvider delayDuration={300}>
-      <Tooltip>
-        <TooltipTrigger>
-          <GithubIcon />
-        </TooltipTrigger>
-        <TooltipContent>关注 GitHub</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-}
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="bg-white fixed w-full md:sticky md:top-0 shadow">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+      <div className="container mx-auto flex justify-between items-center py-2 px-6 h-[var(--top-nav-bar-height)]">
         {/* Logo or Brand */}
         <div className="text-xl font-bold flex gap-2">
           {' '}
           <Image priority src={favIcon} alt="We Resume" className="w-8 h-8" />
           <Link href="/">微简历</Link>
         </div>
-
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex space-x-8">
-          <Button variant="ghost">
-            <Link href="/editor">编辑</Link>
-          </Button>
-          <Button variant="ghost">
-            <Link href="/parser">解析</Link>
-          </Button>
-        </nav>
 
         {/* Mobile Hamburger Menu Icon */}
         <div className="md:hidden">
@@ -68,8 +44,17 @@ export default function Header() {
 
         {/* Actions (for desktop) // TODO */}
         <div className="hidden md:flex space-x-4">
-          {' '}
-          <GithubTooltip />
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex space-x-8">
+            <Button variant="ghost">
+              <Link href="/editor">编辑</Link>
+            </Button>
+            <Button variant="ghost">
+              <Link href="/parser">解析</Link>
+            </Button>
+            <GithubIcon />
+          </nav>
+
           {/* <ModeToggle />
           <Button variant="outline">登陆</Button>
           <Button variant="default">注册</Button> */}

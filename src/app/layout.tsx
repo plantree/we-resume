@@ -24,10 +24,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="min-h-screen w-full bg-gray-100 dark:bg-gray-700 pt-16 md:pt-0">
-            {children}
-          </main>
+          <div className="min-h-screen">
+            {' '}
+            <Header />
+            <main className="h-full w-full overflow-hidden bg-gray-100 dark:bg-gray-700 pt-16 md:pt-0">
+              {children}
+            </main>
+          </div>
+
           <Footer />
         </ThemeProvider>
       </body>

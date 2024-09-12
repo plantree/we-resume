@@ -8,7 +8,7 @@ export interface ResumeProfile {
   email: string;
   phone: string;
   location: string;
-  targetPosition: string;
+  targetPosition?: string;
   age?: number;
   url?: string;
 }
@@ -17,22 +17,22 @@ export interface ResumeEducation {
   institution: string;
   degree: string;
   date: ResumeDate;
-  score: number;
-  awards: string[];
+  score?: number;
+  awards?: string[];
 }
 
 export interface ResumeProject {
   name: string;
   date: ResumeDate;
-  descriptions: string[];
+  descriptions?: string[];
 }
 
 export interface ResumeWork {
   company: string;
   position: string;
-  location: string;
+  location?: string;
   date: ResumeDate;
-  projects: ResumeProject[];
+  projects?: ResumeProject[];
 }
 
 export interface ResumeSkill {

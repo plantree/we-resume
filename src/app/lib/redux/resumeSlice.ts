@@ -23,15 +23,14 @@ export const initialProfile: ResumeProfile = {
 };
 
 export const initialDate: ResumeDate = {
-  start: new Date().toJSON(),
-  end: new Date().toJSON()
+  start: '',
+  end: ''
 };
 
 export const initialEducation: ResumeEducation = {
   institution: '',
   degree: '',
   date: initialDate,
-  score: 0,
   awards: []
 };
 
