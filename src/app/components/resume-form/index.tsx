@@ -4,6 +4,7 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { ListPlus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -19,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { educationSchema, profileSchema } from './schema';
 import { initialEducation, initialProfile } from '@/app/lib/redux/resumeSlice';
 import BulletTextarea from '../bullet-textarea';
+import { Separator } from '@/components/ui/separator';
 
 function FormLabelMessage({ label }: { label: string }) {
   return (
@@ -65,7 +67,7 @@ function ProfileForm() {
               <FormItem>
                 <FormLabelMessage label="年龄 (可选)" />
                 <FormControl>
-                  <Input {...field} type="number" />
+                  <Input {...field} type="number" placeholder="35" />
                 </FormControl>
               </FormItem>
             )}
@@ -78,7 +80,7 @@ function ProfileForm() {
             name="targetPosition"
             render={({ field }) => (
               <FormItem className="grow">
-                <FormLabelMessage label="目标职位" />
+                <FormLabelMessage label="目标职位 (可选)" />
                 <FormControl>
                   <Input placeholder="工程师" {...field} type="text" />
                 </FormControl>
@@ -118,7 +120,7 @@ function ProfileForm() {
             <FormItem>
               <FormLabelMessage label="移动电话" />
               <FormControl>
-                <Input placeholder="12345678910" {...field} type="tel" />
+                <Input placeholder="18812345678" {...field} type="tel" />
               </FormControl>
             </FormItem>
           )}
@@ -136,13 +138,13 @@ function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">保存</Button>
       </form>
     </Form>
   );
 }
 
-function EducationForm() {
+function EducationFormItem() {
   // 1. define a form
   const educationForm = useForm<z.infer<typeof educationSchema>>({
     resolver: zodResolver(educationSchema),
@@ -160,7 +162,6 @@ function EducationForm() {
 
   return (
     <Form {...educationForm}>
-      <h2 className="font-bold mb-4">教育经历</h2>
       <form
         onSubmit={educationForm.handleSubmit(onSubmitEducation)}
         className="flex flex-col gap-4"
@@ -241,9 +242,37 @@ function EducationForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">保存</Button>
       </form>
     </Form>
+  );
+}
+
+function EducationForm() {
+  // eslint-disable-next-line react/jsx-key
+  const [educationForms, setEducationForms] = React.useState([<EducationFormItem />]);
+
+  function handleAdd() {
+    // eslint-disable-next-line react/jsx-key
+    setEducationForms([...educationForms, <EducationFormItem />]);
+  }
+
+  return (
+    <>
+      <h2 className="font-bold mb-4">教育经历</h2>
+      {educationForms.map((eduForm, index) => (
+        <>
+          <div key={index} className="mb-4">
+            {eduForm}
+          </div>
+          <Separator className="my-4" />
+        </>
+      ))}
+      <Button variant="outline" className="mr-2" onClick={handleAdd}>
+        <ListPlus className="w-4 h-4" />
+        增加
+      </Button>
+    </>
   );
 }
 
