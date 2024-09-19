@@ -37,6 +37,7 @@ export const initialEducation: ResumeEducation = {
 export const initialProject: ResumeProject = {
   name: '',
   date: initialDate,
+  link: '',
   descriptions: []
 };
 
@@ -44,8 +45,7 @@ export const initialWork: ResumeWork = {
   company: '',
   position: '',
   location: '',
-  date: initialDate,
-  projects: [initialProject]
+  date: initialDate
 };
 
 export const initialSkill: ResumeSkill = {

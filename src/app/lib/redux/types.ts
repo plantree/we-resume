@@ -24,6 +24,7 @@ export interface ResumeEducation {
 export interface ResumeProject {
   name: string;
   date: ResumeDate;
+  link?: string;
   descriptions?: string[];
 }
 
@@ -32,7 +33,6 @@ export interface ResumeWork {
   position: string;
   location?: string;
   date: ResumeDate;
-  projects?: ResumeProject[];
 }
 
 export interface ResumeSkill {
