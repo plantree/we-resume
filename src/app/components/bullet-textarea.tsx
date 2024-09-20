@@ -7,7 +7,13 @@ import React, { useRef } from 'react';
  *
  * Reference: https://stackoverflow.com/questions/57042145/add-bullets-to-each-new-line-within-a-textarea/74998090#74998090
  */
-export default function BulletTextarea({ onChange }: { onChange: (value: string[]) => void }) {
+export default function BulletTextarea({
+  onChange,
+  payload
+}: {
+  onChange: (value: string[]) => void;
+  payload?: string[];
+}) {
   const divEditable = useRef<HTMLDivElement>(null);
 
   function handleKeyUp(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -24,7 +30,9 @@ export default function BulletTextarea({ onChange }: { onChange: (value: string[
         className="list-item outline-none text-base ml-4 [&>div]:list-item [&>div]:py-1"
         contentEditable="true"
         onKeyUp={handleKeyUp}
-      ></div>
+      >
+        {payload?.map((item, index) => <div key={index}>{item}</div>)}
+      </div>
     </div>
   );
 }

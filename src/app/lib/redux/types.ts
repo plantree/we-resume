@@ -1,44 +1,24 @@
-export interface ResumeDate {
-  start: string;
-  end: string;
-}
+import { z } from 'zod';
+import {
+  profileSchema,
+  dateSchema,
+  educationSchema,
+  projectSchema,
+  workSchema,
+  skillSchema
+} from './schema';
 
-export interface ResumeProfile {
-  name: string;
-  email: string;
-  phone: string;
-  location: string;
-  targetPosition?: string;
-  age?: number;
-  url?: string;
-}
+export type ResumeDate = z.infer<typeof dateSchema>;
 
-export interface ResumeEducation {
-  institution: string;
-  degree: string;
-  date: ResumeDate;
-  score?: number;
-  awards?: string[];
-}
+export type ResumeProfile = z.infer<typeof profileSchema>;
 
-export interface ResumeProject {
-  name: string;
-  date: ResumeDate;
-  link?: string;
-  descriptions?: string[];
-}
+export type ResumeEducation = z.infer<typeof educationSchema>;
 
-export interface ResumeWork {
-  company: string;
-  position: string;
-  location?: string;
-  date: ResumeDate;
-}
+export type ResumeProject = z.infer<typeof projectSchema>;
 
-export interface ResumeSkill {
-  name: string;
-  level: string;
-}
+export type ResumeWork = z.infer<typeof workSchema>;
+
+export type ResumeSkill = z.infer<typeof skillSchema>;
 
 export interface Resume {
   profile: ResumeProfile;

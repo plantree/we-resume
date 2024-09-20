@@ -19,7 +19,17 @@ export const initialProfile: ResumeProfile = {
   phone: '',
   location: '',
   targetPosition: '',
-  url: ''
+  homepage: ''
+};
+
+export const initialProfileForTest: ResumeProfile = {
+  name: '张三',
+  age: 35,
+  targetPosition: '前端工程师',
+  location: '北京',
+  email: 'hello@job.com',
+  phone: '18812345678',
+  homepage: 'https://example.com'
 };
 
 export const initialDate: ResumeDate = {
@@ -32,6 +42,13 @@ export const initialEducation: ResumeEducation = {
   degree: '',
   date: initialDate,
   awards: []
+};
+
+export const initialEducationForTest: ResumeEducation = {
+  institution: '清华大学',
+  degree: '硕士',
+  date: { start: '2010-09', end: '2013-06' },
+  awards: ['优秀毕业生', '国家奖学金']
 };
 
 export const initialProject: ResumeProject = {

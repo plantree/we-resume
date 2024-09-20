@@ -4,10 +4,10 @@ const profileSchema = z.object({
   name: z.string().min(1, { message: '姓名不能为空' }),
   email: z.string().email({ message: '请输入有效的电子邮件地址' }),
   phone: z.string().length(11, { message: '请输入有效的手机号码' }),
-  location: z.string().min(1, { message: '请输入有效的地址' }),
+  location: z.string().min(1, { message: '请输入有效的地址' }).optional(),
   targetPosition: z.string().optional(),
   age: z.coerce.number({ message: '请输入整数' }).int().optional(),
-  url: z.string().optional()
+  homepage: z.string().optional()
 });
 
 const dateSchema = z.object({
@@ -42,4 +42,4 @@ const skillSchema = z.object({
   level: z.string().min(1, { message: '请输入技能等级' })
 });
 
-export { profileSchema, educationSchema, projectSchema, workSchema, skillSchema };
+export { dateSchema, profileSchema, educationSchema, projectSchema, workSchema, skillSchema };

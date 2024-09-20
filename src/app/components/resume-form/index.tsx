@@ -17,16 +17,25 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { educationSchema, profileSchema, projectSchema, skillSchema, workSchema } from './schema';
+import {
+  educationSchema,
+  profileSchema,
+  projectSchema,
+  skillSchema,
+  workSchema
+} from '../../lib/redux/schema';
 import {
   initialEducation,
-  initialProfile,
+  initialEducationForTest,
+  initialProfileForTest,
   initialProject,
   initialSkill,
   initialWork
 } from '@/app/lib/redux/resumeSlice';
 import BulletTextarea from '../bullet-textarea';
 import { Separator } from '@/components/ui/separator';
+import { ResumeEducation } from '@/app/lib/redux/types';
+import { isDev } from '@/app/lib/env';
 
 function FormLabelMessage({ label }: { label: string }) {
   return (
@@ -41,7 +50,7 @@ function ProfileForm() {
   // 1. define a form
   const profileForm = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
-    defaultValues: initialProfile
+    defaultValues: isDev ? initialProfileForTest : {}
   });
 
   // 2. define a submit handler
@@ -134,7 +143,7 @@ function ProfileForm() {
 
         <FormField
           control={profileForm.control}
-          name="url"
+          name="homepage"
           render={({ field }) => (
             <FormItem>
               <FormLabelMessage label="个人主页 (可选)" />
@@ -150,11 +159,11 @@ function ProfileForm() {
   );
 }
 
-function EducationFormItem() {
+function EducationFormItem({ payload }: { payload: ResumeEducation }) {
   // 1. define a form
   const educationForm = useForm<z.infer<typeof educationSchema>>({
     resolver: zodResolver(educationSchema),
-    defaultValues: initialEducation
+    defaultValues: payload
   });
 
   function setAwards(value: string[]) {
@@ -243,7 +252,7 @@ function EducationFormItem() {
             <FormItem>
               <FormLabelMessage label="奖励 (可选)" />
               <FormControl>
-                <BulletTextarea onChange={setAwards} />
+                <BulletTextarea onChange={setAwards} payload={payload.awards} />
               </FormControl>
             </FormItem>
           )}
@@ -255,22 +264,18 @@ function EducationFormItem() {
 }
 
 function EducationForm() {
-  // eslint-disable-next-line react/jsx-key
-  const [educationForms, setEducationForms] = React.useState([<EducationFormItem />]);
+  const [educationForms, setEducationForms] = React.useState<ResumeEducation[]>([]);
 
   function handleAdd() {
-    // eslint-disable-next-line react/jsx-key
-    setEducationForms([...educationForms, <EducationFormItem />]);
+    setEducationForms([...educationForms, isDev ? initialEducationForTest : initialEducation]);
   }
 
   return (
     <>
       <h2 className="font-bold mb-4">教育经历</h2>
-      {educationForms.map((eduForm, index) => (
+      {educationForms.map((education, index) => (
         <>
-          <div key={index} className="mb-4">
-            {eduForm}
-          </div>
+          <EducationFormItem key={index} payload={education} />
           <Separator className="my-4" />
         </>
       ))}
